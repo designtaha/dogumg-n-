@@ -25,35 +25,38 @@ body {
 
 .candles {
   position: absolute;
-  top: 15px; /* Mumları pastaya göre hizala */
-  left: 0;
-  width: 100%;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: space-around;
+  gap: 20px;
   pointer-events: none;
 }
 
 .candle {
-  width: 8px;
+  width: 10px;
   height: 30px;
   background: orange;
   position: relative;
-  border-radius: 2px;
-  animation: flicker 1s infinite;
-  transform-origin: bottom center;
+  border-radius: 3px;
 }
 
 .flame {
   position: absolute;
-  top: -15px;
+  top: -20px;
   left: 50%;
-  width: 10px;
-  height: 15px;
-  background: radial-gradient(circle at center, #fffa87 40%, #ff6600 70%, transparent 90%);
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   transform: translateX(-50%);
-  animation: flameFlicker 1.2s infinite;
-  filter: drop-shadow(0 0 2px #ff9900);
+  width: 8px;
+  height: 15px;
+  background: radial-gradient(circle at center, #ffec80, #ffaf00);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
 }
 
 .blow-btn {
@@ -70,15 +73,4 @@ body {
 
 .blow-btn:hover {
   background: #e75480;
-}
-
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.8; }
-  100% { opacity: 1; }
-}
-
-@keyframes flameFlicker {
-  0%, 100% { opacity: 1; transform: translateY(0); }
-  50% { opacity: 0.6; transform: translateY(-3px); }
 }
