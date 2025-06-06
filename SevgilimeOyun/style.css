@@ -25,7 +25,7 @@ body {
 
 .candles {
   position: absolute;
-  top: 0;
+  top: 15px; /* Mumları pastaya göre hizala */
   left: 0;
   width: 100%;
   display: flex;
@@ -38,25 +38,22 @@ body {
   height: 30px;
   background: orange;
   position: relative;
+  border-radius: 2px;
+  animation: flicker 1s infinite;
+  transform-origin: bottom center;
 }
 
 .flame {
   position: absolute;
   top: -15px;
   left: 50%;
-  transform: translateX(-50%);
   width: 10px;
   height: 15px;
-  background: radial-gradient(circle at center, yellow 0%, orange 70%);
+  background: radial-gradient(circle at center, #fffa87 40%, #ff6600 70%, transparent 90%);
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  animation: flicker 1.2s infinite alternate;
-  filter: drop-shadow(0 0 4px yellow);
-}
-
-@keyframes flicker {
-  0% { opacity: 1; transform: translateX(-50%) scaleY(1); }
-  50% { opacity: 0.7; transform: translateX(-48%) scaleY(0.9); }
-  100% { opacity: 1; transform: translateX(-50%) scaleY(1); }
+  transform: translateX(-50%);
+  animation: flameFlicker 1.2s infinite;
+  filter: drop-shadow(0 0 2px #ff9900);
 }
 
 .blow-btn {
@@ -75,86 +72,13 @@ body {
   background: #e75480;
 }
 
-/* Mumların söndüğü animasyon */
-.candle.blowOut {
-  animation: blowOut 1s forwards;
-  background: #444;
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
 }
 
-.candle.blowOut .flame {
-  animation: blowOutFlame 1s forwards;
-}
-
-@keyframes blowOut {
-  0% { opacity: 1; height: 30px; }
-  100% { opacity: 0; height: 0; }
-}
-
-@keyframes blowOutFlame {
-  0% { opacity: 1; transform: translateX(-50%) scaleY(1); filter: drop-shadow(0 0 4px yellow); }
-  100% { opacity: 0; transform: translateX(-50%) scaleY(0); filter: none; }
-}
-
-/* --- Game sayfası stilleri --- */
-
-.game-container {
-  width: 600px;
-  height: 600px;
-  margin: 50px auto;
-  background: #d0f0c0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
-  position: relative;
-  border: 5px solid #333;
-}
-
-.house {
-  background: #ffcc70;
-  border: 2px solid #996633;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.player {
-  width: 40px;
-  height: 40px;
-  background: url('assets/img/player.png') no-repeat center center / contain;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: 0.2s ease;
-  z-index: 10;
-}
-
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  display: none;
-  max-width: 90%;
-}
-
-.popup h2 {
-  margin-top: 0;
-}
-
-.close-btn {
-  margin-top: 10px;
-  background: #e75480;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
+@keyframes flameFlicker {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0.6; transform: translateY(-3px); }
 }
