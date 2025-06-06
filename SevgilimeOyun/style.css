@@ -1,76 +1,74 @@
 body {
   margin: 0;
-  background: #ffe5ec;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  text-align: center;
+  background: #88c057; /* açık çimen yeşili */
+  font-family: sans-serif;
 }
 
-.container {
-  padding: 30px;
-}
-
-.title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.cake {
-  position: relative;
-  display: inline-block;
-}
-
-.cake-img {
-  width: 300px;
-}
-
-.candles {
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
+.game-container {
+  width: 600px;
+  height: 600px;
+  margin: 50px auto;
+  background: #a3d977; /* açık çimen */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   gap: 20px;
-  pointer-events: none;
-}
-
-.candle {
-  width: 10px;
-  height: 30px;
-  background: orange;
   position: relative;
-  border-radius: 3px;
+  border: 5px solid #4b7c15; /* koyu yeşil sınır */
+  padding: 15px;
+  box-sizing: border-box;
+  background-image:
+    radial-gradient(circle at center, #c2e17e 10%, transparent 11%),
+    radial-gradient(circle at center, #c2e17e 10%, transparent 11%);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
 }
 
-.flame {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 15px;
-  background: radial-gradient(circle at center, #ffec80, #ffaf00);
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  animation: flicker 1s infinite;
-}
-
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.6; }
-  100% { opacity: 1; }
-}
-
-.blow-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  background: #ff66a5;
-  color: white;
-  border: none;
+.house {
+  background: #ffefc1; /* açık sarı ev */
+  border: 4px solid #654321; /* kahverengi çit */
   border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 0 0 6px #deb887 inset; /* çit efekti */
+  position: relative;
   cursor: pointer;
-  transition: background 0.3s;
+  user-select: none;
 }
 
-.blow-btn:hover {
-  background: #e75480;
+.house::before, .house::after {
+  content: "";
+  position: absolute;
+  background: #8b7d6b; /* taş rengi */
+}
+
+.house::before {
+  width: 100%;
+  height: 8px;
+  bottom: -15px;
+  left: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 3px #6e5e4e;
+}
+
+.house::after {
+  width: 8px;
+  height: 100%;
+  right: -15px;
+  top: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 3px #6e5e4e;
+}
+
+.player {
+  width: 40px;
+  height: 40px;
+  background: url('assets/img/player.png') no-repeat center center / contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.2s ease;
+  z-index: 10;
 }
