@@ -4,104 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>İyi ki Doğdun ❤️</title>
-  <style>
-    body {
-      margin: 0;
-      background: #ffe5ec;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      text-align: center;
-      padding: 30px;
-    }
-    .title {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .cake {
-      position: relative;
-      display: inline-block;
-    }
-    .cake-img {
-      width: 300px;
-    }
-    .candles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-      pointer-events: none;
-    }
-    .candle {
-      width: 5px;
-      height: 30px;
-      background: orange;
-      animation: flicker 1s infinite;
-    }
-    @keyframes flicker {
-      0% { opacity: 1; }
-      50% { opacity: 0.6; }
-      100% { opacity: 1; }
-    }
-    @keyframes blowOut {
-      0% { opacity: 1; transform: scaleY(1); }
-      100% { opacity: 0; transform: scaleY(0.1); }
-    }
-    .blow-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      background: #ff66a5;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .blow-btn:hover {
-      background: #e75480;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="container">
+    <h1 class="title">İyi ki Doğdun Aşkım 🎂</h1>
 
-  <h1 class="title">İyi ki Doğdun Aşkım 🎂</h1>
+    <div class="cake">
+      <div class="candles">
+        <!-- Mumlar JS ile eklenecek -->
+      </div>
+      <img src="assets/img/cake.png" alt="Doğum Günü Pastası" class="cake-img" />
+    </div>
 
-  <div class="cake">
-    <div class="candles"></div>
-    <img src="assets/img/cake.png" alt="Doğum Günü Pastası" class="cake-img" />
+    <button class="blow-btn" id="blowBtn">Üfle 🎈</button>
   </div>
 
-  <button class="blow-btn" id="blowBtn">Üfle 🎈</button>
-
-  <script>
-    const candlesContainer = document.querySelector(".candles");
-
-    // 19 mum oluştur
-    for (let i = 0; i < 19; i++) {
-      const candle = document.createElement("div");
-      candle.classList.add("candle");
-      candlesContainer.appendChild(candle);
-    }
-
-    const blowBtn = document.getElementById("blowBtn");
-
-    blowBtn.addEventListener("click", () => {
-      const candles = document.querySelectorAll(".candle");
-      candles.forEach(c => {
-        c.style.animation = "blowOut 1s forwards";
-      });
-
-      document.body.style.transition = "opacity 2s";
-      setTimeout(() => {
-        document.body.style.opacity = 0;
-      }, 1000);
-
-      setTimeout(() => {
-        window.location.href = "game.html";
-      }, 3000);
-    });
-  </script>
-
+  <script src="main.js"></script>
 </body>
 </html>
