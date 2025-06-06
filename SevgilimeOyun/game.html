@@ -1,39 +1,25 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>12 Ayın Anıları 🎮</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Oyun Ekranı</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1 style="text-align:center;">🎉 12 Ayın Anısı 🎉</h1>
-  
-  <div class="game-container" id="gameContainer">
-    <!-- 12 ev -->
-    <div class="house">Ocak</div>
-    <div class="house">Şubat</div>
-    <div class="house">Mart</div>
-    <div class="house">Nisan</div>
-    <div class="house">Mayıs</div>
-    <div class="house">Haziran</div>
-    <div class="house">Temmuz</div>
-    <div class="house">Ağustos</div>
-    <div class="house">Eylül</div>
-    <div class="house">Ekim</div>
-    <div class="house">Kasım</div>
-    <div class="house">Aralık</div>
 
-    <div class="player" id="player"></div>
-  </div>
+<div class="game-container" tabindex="0" id="gameContainer">
+  <!-- 12 ev burada grid şeklinde olacak -->
+</div>
+<img id="player" src="assets/img/player.png" alt="Oyuncu" />
 
-  <!-- Fotoğraf popup -->
-  <div class="popup" id="popup">
-    <h2 id="popupTitle">Bu ayki anılar 💕</h2>
-    <div id="photoContainer"></div>
-    <button class="close-btn" id="closePopupBtn">Kapat</button>
-  </div>
+<!-- Popup -->
+<div id="popup" class="popup hidden">
+  <h2 id="popupTitle"></h2>
+  <div id="photoContainer"></div>
+  <button id="closePopupBtn" class="close-btn">Kapat</button>
+</div>
 
-  <script src="main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
