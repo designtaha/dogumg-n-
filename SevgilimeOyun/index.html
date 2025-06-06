@@ -3,47 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hoşgeldin 💖</title>
-  <style>
-    body {
-      margin: 0;
-      background: #ffe5ec;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      color: #ff4d7e;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 40px;
-    }
-    a {
-      display: inline-block;
-      padding: 15px 30px;
-      background: #ff66a5;
-      color: white;
-      text-decoration: none;
-      font-size: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(255,102,165,0.4);
-      transition: background 0.3s;
-    }
-    a:hover {
-      background: #e75480;
-    }
-  </style>
+  <title>İyi ki doğmuşsun aşkımm ❤</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Doğum Günü Oyununa Hoşgeldin!</h1>
-  <p>Sevgiline özel bu eğlenceli oyunu başlatmak için aşağıdaki butona tıkla 🎂🎉</p>
-  <a href="SevgilimeOyun/">Oyuna Başla</a>
+  <div class="container">
+    <h1 class="title">İyi ki Doğdun Aşkım 🎂</h1>
+    <div class="cake">
+      <div class="candles"></div>
+      <img src="assets/img/cake.png" alt="Doğum Günü Pastası" class="cake-img" />
+    </div>
+    <button class="blow-btn" onclick="blowCandles()">Üfle 🎈</button>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
