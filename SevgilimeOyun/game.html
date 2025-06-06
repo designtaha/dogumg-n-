@@ -1,32 +1,24 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Oyun Sayfası</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oyuna Hoşgeldin</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="game-container" id="gameContainer">
+    <!-- Evler otomatik JS ile oluşturulacak -->
+    <div id="player" class="player"></div>
+  </div>
 
-<div class="game-container" id="gameContainer">
-  <!-- 12 Ev -->
-  <div class="house">Ocak</div>
-  <div class="house">Şubat</div>
-  <div class="house">Mart</div>
-  <div class="house">Nisan</div>
-  <div class="house">Mayıs</div>
-  <div class="house">Haziran</div>
-  <div class="house">Temmuz</div>
-  <div class="house">Ağustos</div>
-  <div class="house">Eylül</div>
-  <div class="house">Ekim</div>
-  <div class="house">Kasım</div>
-  <div class="house">Aralık</div>
+  <!-- Fotoğraf popup -->
+  <div class="popup" id="popup">
+    <h2 id="popupTitle"></h2>
+    <div id="photoContainer"></div>
+    <button class="close-btn" id="closePopupBtn">Kapat</button>
+  </div>
 
-  <!-- Oyuncu -->
-  <div class="player" id="player"></div>
-</div>
-
-<script src="main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
