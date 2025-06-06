@@ -1,48 +1,28 @@
-const blowBtn = document.getElementById('blowBtn');
-const cakeScreen = document.getElementById('cakeScreen');
-const gameScreen = document.getElementById('gameScreen');
-const player = document.getElementById('player');
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>İyi ki doğdun aşkımm ❤</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">İyi ki doğmuşsun aşkımm</h1>
+    
+    <div class="cake">
+      <div class="candles">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+      <img src="assets/img/cake.png" alt="Doğum Günü Pastası" class="cake-img" />
+    </div>
 
-function blowCandles() {
-  const candles = document.querySelectorAll('.candle');
-  candles.forEach(c => {
-    c.style.animation = 'blowOut 1s forwards';
-  });
+    <button class="blow-btn" id="blowBtn">Üfle ama dilek tut </button>
+  </div>
 
-  cakeScreen.style.transition = 'opacity 2s';
-  cakeScreen.style.opacity = 0;
-
-  setTimeout(() => {
-    cakeScreen.style.display = 'none';
-    gameScreen.style.display = 'grid';
-  }, 2000);
-}
-
-blowBtn.addEventListener('click', blowCandles);
-
-// Karakter hareketi
-
-const gridCols = 4;
-const gridRows = 3;
-const cellWidth = gameScreen.clientWidth / gridCols;
-const cellHeight = gameScreen.clientHeight / gridRows;
-let x = 0;
-let y = 0;
-
-function updatePlayerPosition() {
-  player.style.left = x * (cellWidth + 10) + 10 + 'px'; 
-  player.style.top = y * (cellHeight + 10) + 10 + 'px';
-}
-
-document.addEventListener('keydown', (e) => {
-  if (gameScreen.style.display !== 'grid') return;
-
-  if (e.key === 'ArrowRight' && x < gridCols - 1) x++;
-  else if (e.key === 'ArrowLeft' && x > 0) x--;
-  else if (e.key === 'ArrowDown' && y < gridRows - 1) y++;
-  else if (e.key === 'ArrowUp' && y > 0) y--;
-
-  updatePlayerPosition();
-});
-
-updatePlayerPosition();
+  <script src="main.js"></script>
+</body>
+</html>
