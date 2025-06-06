@@ -3,21 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>İyi ki doğdun sevgilimm ❤</title>
+  <title>Doğum Günü Oyunu</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1 class="title">İyi ki doğdun sevgilimm</h1>
-    
+  <div id="cakeScreen">
+    <h1>İyi ki Doğdun Aşkım 🎂</h1>
     <div class="cake">
+      <img src="assets/img/cake.png" alt="Pasta" class="cake-img" />
       <div class="candles">
-        <!-- Mumlar JS ile eklenecek -->
+        <div class="candle"></div>
+        <div class="candle"></div>
+        <div class="candle"></div>
+        <div class="candle"></div>
       </div>
-      <img src="assets/img/cake.png" alt="Doğum Günü Pastası" class="cake-img" />
     </div>
+    <button class="blow-btn" id="blowBtn">Üfle 🎈</button>
+  </div>
 
-    <button class="blow-btn" onclick="blowCandles()">Üfle önce dilek tut ama </button>
+  <div id="gameScreen">
+    <!-- 12 ev burada grid ile yerleşecek -->
+    <!-- Örnek 4 ev: -->
+    <div class="house">Ocak<div class="fence fence-top"></div><div class="fence fence-bottom"></div><div class="fence fence-left"></div><div class="fence fence-right"></div></div>
+    <div class="house">Şubat<div class="fence fence-top"></div><div class="fence fence-bottom"></div><div class="fence fence-left"></div><div class="fence fence-right"></div></div>
+    <div class="house">Mart<div class="fence fence-top"></div><div class="fence fence-bottom"></div><div class="fence fence-left"></div><div class="fence fence-right"></div></div>
+    <div class="house">Nisan<div class="fence fence-top"></div><div class="fence fence-bottom"></div><div class="fence fence-left"></div><div class="fence fence-right"></div></div>
+    <!-- diğer evler... -->
+    <div id="player"></div>
   </div>
 
   <script src="main.js"></script>
