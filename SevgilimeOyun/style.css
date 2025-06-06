@@ -1,74 +1,147 @@
 body {
   margin: 0;
-  background: #88c057; /* açık çimen yeşili */
-  font-family: sans-serif;
+  background: #ffe5ec;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
 }
 
-.game-container {
-  width: 600px;
-  height: 600px;
-  margin: 50px auto;
-  background: #a3d977; /* açık çimen */
+#cakeScreen {
+  padding: 30px;
+}
+
+.cake {
+  position: relative;
+  display: inline-block;
+}
+
+.cake-img {
+  width: 300px;
+}
+
+.candles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  pointer-events: none;
+}
+
+.candle {
+  width: 5px;
+  height: 30px;
+  background: orange;
+  animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.blow-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background: #ff66a5;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.blow-btn:hover {
+  background: #e75480;
+}
+
+/* Mumların söndüğü animasyon */
+@keyframes blowOut {
+  0% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(0.1); }
+}
+
+#gameScreen {
+  display: none;
+  background: #90ee90;
+  width: 620px;
+  height: 470px;
+  margin: 20px auto;
+  border: 3px solid #333;
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 20px;
-  position: relative;
-  border: 5px solid #4b7c15; /* koyu yeşil sınır */
-  padding: 15px;
+  gap: 10px;
+  padding: 10px;
   box-sizing: border-box;
-  background-image:
-    radial-gradient(circle at center, #c2e17e 10%, transparent 11%),
-    radial-gradient(circle at center, #c2e17e 10%, transparent 11%);
-  background-size: 40px 40px;
-  background-position: 0 0, 20px 20px;
 }
 
 .house {
-  background: #ffefc1; /* açık sarı ev */
-  border: 4px solid #654321; /* kahverengi çit */
-  border-radius: 12px;
+  background: #ffcc70;
+  border: 2px solid #996633;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  box-shadow: 0 0 0 6px #deb887 inset; /* çit efekti */
   position: relative;
-  cursor: pointer;
-  user-select: none;
 }
 
-.house::before, .house::after {
-  content: "";
+/* Çitler */
+.fence {
   position: absolute;
-  background: #8b7d6b; /* taş rengi */
+  border: 2px solid #8b5a2b;
+  background: #deb887;
+  box-sizing: border-box;
 }
 
-.house::before {
-  width: 100%;
-  height: 8px;
-  bottom: -15px;
-  left: 0;
-  border-radius: 4px;
-  box-shadow: 0 0 3px #6e5e4e;
-}
-
-.house::after {
-  width: 8px;
-  height: 100%;
-  right: -15px;
+.fence-top {
   top: 0;
-  border-radius: 4px;
-  box-shadow: 0 0 3px #6e5e4e;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
 }
 
-.player {
+.fence-bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+
+.fence-left {
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.fence-right {
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 100%;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Karakter */
+#player {
   width: 40px;
   height: 40px;
-  background: url('assets/img/player.png') no-repeat center center / contain;
+  background: url('assets/img/player.png') no-repeat center / contain;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 10px;
+  left: 10px;
   transition: 0.2s ease;
   z-index: 10;
 }
