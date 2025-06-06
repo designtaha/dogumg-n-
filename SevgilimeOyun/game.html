@@ -3,24 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Oyuna Hoşgeldin</title>
+  <title>Çiftlik Oyunu</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1 class="title">Çiftlik Oyunu</h1>
+  <div class="game-container" id="gameContainer">
+    <!-- 12 ev -->
+    <div class="house" data-month="Ocak">Ocak</div>
+    <div class="house" data-month="Şubat">Şubat</div>
+    <div class="house" data-month="Mart">Mart</div>
+    <div class="house" data-month="Nisan">Nisan</div>
+    <div class="house" data-month="Mayıs">Mayıs</div>
+    <div class="house" data-month="Haziran">Haziran</div>
+    <div class="house" data-month="Temmuz">Temmuz</div>
+    <div class="house" data-month="Ağustos">Ağustos</div>
+    <div class="house" data-month="Eylül">Eylül</div>
+    <div class="house" data-month="Ekim">Ekim</div>
+    <div class="house" data-month="Kasım">Kasım</div>
+    <div class="house" data-month="Aralık">Aralık</div>
 
-  <div id="gameContainer" class="game-container">
-    <!-- Evler dinamik JS ile eklenecek -->
+    <img src="assets/img/player.png" alt="Player" class="player" id="player" />
   </div>
 
-  <div id="player" class="player"></div>
-
-  <div id="popup" class="popup">
+  <!-- Popup -->
+  <div class="popup" id="popup">
     <h2 id="popupTitle"></h2>
     <div id="photoContainer"></div>
-    <button id="closePopupBtn" class="close-btn">Kapat</button>
+    <button class="close-btn" id="closePopupBtn">Kapat</button>
   </div>
 
-  <script src="main.js"></script>
+  <script src="game.js"></script>
 </body>
 </html>
