@@ -1,37 +1,28 @@
-// Mumları otomatik ekle
-const candlesContainer = document.querySelector(".candles");
+// Mumları otomatik ekleme kodu kaldırıldı
 
-for (let i = 0; i < 19; i++) {
-  const candle = document.createElement("div");
-  candle.classList.add("candle");
-  candlesContainer.appendChild(candle);
-}
-
-// Üfle fonksiyonu
+// Üfle fonksiyonu (alev animasyonu + sayfa geçiş)
 function blowCandles() {
-  const candles = document.querySelectorAll(".candle");
-  candles.forEach(c => {
-    c.style.animation = "blowOut 1s forwards";
+  const flames = document.querySelectorAll(".flame");
+  flames.forEach((flame, i) => {
+    setTimeout(() => {
+      flame.style.animation = "blowOut 0.5s forwards";
+      flame.style.opacity = 0;
+      flame.style.transform = "translateX(-50%) translateY(-10px) scale(0)";
+      flame.style.filter = "drop-shadow(0 0 0 transparent)";
+    }, i * 200);
   });
 
-  // Sayfa fade out
-  document.body.style.transition = "opacity 2s";
-  setTimeout(() => {
-    document.body.style.opacity = 0;
-  }, 1000);
+  const candles = document.querySelectorAll(".candle");
+  candles.forEach((candle) => {
+    candle.style.boxShadow = "none";
+  });
 
-  // Sayfa yönlendirme
+  setTimeout(() => {
+    document.body.style.transition = "opacity 2s";
+    document.body.style.opacity = 0;
+  }, 1200);
+
   setTimeout(() => {
     window.location.href = "game.html";
-  }, 3000);
+  }, 3200);
 }
-
-// Mum sönme animasyonu
-const style = document.createElement('style');
-style.innerHTML = `
-  @keyframes blowOut {
-    0% { opacity: 1; transform: scaleY(1); }
-    100% { opacity: 0; transform: scaleY(0.1); }
-  }
-`;
-document.head.appendChild(style);
