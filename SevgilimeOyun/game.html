@@ -3,21 +3,28 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Oyun Ekranı</title>
+<title>Oyun Sayfası</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="game-container" tabindex="0" id="gameContainer">
-  <!-- 12 ev burada grid şeklinde olacak -->
-</div>
-<img id="player" src="assets/img/player.png" alt="Oyuncu" />
+<div class="game-container" id="gameContainer">
+  <!-- 12 Ev -->
+  <div class="house">Ocak</div>
+  <div class="house">Şubat</div>
+  <div class="house">Mart</div>
+  <div class="house">Nisan</div>
+  <div class="house">Mayıs</div>
+  <div class="house">Haziran</div>
+  <div class="house">Temmuz</div>
+  <div class="house">Ağustos</div>
+  <div class="house">Eylül</div>
+  <div class="house">Ekim</div>
+  <div class="house">Kasım</div>
+  <div class="house">Aralık</div>
 
-<!-- Popup -->
-<div id="popup" class="popup hidden">
-  <h2 id="popupTitle"></h2>
-  <div id="photoContainer"></div>
-  <button id="closePopupBtn" class="close-btn">Kapat</button>
+  <!-- Oyuncu -->
+  <div class="player" id="player"></div>
 </div>
 
 <script src="main.js"></script>
