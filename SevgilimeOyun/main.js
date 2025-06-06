@@ -1,16 +1,16 @@
-// index.html için mumları söndürme ve sayfa geçişi
-if(document.getElementById('blowBtn')) {
+// index.html için mum söndürme ve sayfa geçişi
+if (document.getElementById('blowBtn')) {
   const blowBtn = document.getElementById('blowBtn');
-  const candles = document.querySelectorAll('.candle .flame');
+  const flames = document.querySelectorAll('.flame');
 
   blowBtn.addEventListener('click', () => {
-    candles.forEach(flame => {
+    flames.forEach(flame => {
       flame.style.animation = 'none';
       flame.style.opacity = 0;
       flame.style.transition = 'opacity 1s';
     });
-    blowBtn.disabled = true;
 
+    blowBtn.disabled = true;
     document.body.style.transition = 'opacity 2s';
     document.body.style.opacity = 0;
 
@@ -20,8 +20,8 @@ if(document.getElementById('blowBtn')) {
   });
 }
 
-// game.html için oyun ve popup işlemleri
-if(document.getElementById('gameContainer')) {
+// game.html için oyun mantığı
+if (document.getElementById('gameContainer')) {
   const gameContainer = document.getElementById('gameContainer');
   const player = document.getElementById('player');
   const popup = document.getElementById('popup');
@@ -32,84 +32,92 @@ if(document.getElementById('gameContainer')) {
   const cols = 4;
   const rows = 3;
 
-  let posX = 0;
-  let posY = 0;
-
-  // Ev isimleri ve fotoğraflar
-  const months = [
-    {name:"Ocak", photos:["assets/img/ocak1.jpg","assets/img/ocak2.jpg","assets/img/ocak3.jpg"]},
-    {name:"Şubat", photos:["assets/img/subat1.jpg","assets/img/subat2.jpg","assets/img/subat3.jpg"]},
-    {name:"Mart", photos:["assets/img/mart1.jpg","assets/img/mart2.jpg","assets/img/mart3.jpg"]},
-    {name:"Nisan", photos:["assets/img/nisan1.jpg","assets/img/nisan2.jpg","assets/img/nisan3.jpg"]},
-    {name:"Mayıs", photos:["assets/img/mayis1.jpg","assets/img/mayis2.jpg","assets/img/mayis3.jpg"]},
-    {name:"Haziran", photos:["assets/img/haziran1.jpg","assets/img/haziran2.jpg","assets/img/haziran3.jpg"]},
-    {name:"Temmuz", photos:["assets/img/temmuz1.jpg","assets/img/temmuz2.jpg","assets/img/temmuz3.jpg"]},
-    {name:"Ağustos", photos:["assets/img/agustos1.jpg","assets/img/agustos2.jpg","assets/img/agustos3.jpg"]},
-    {name:"Eylül", photos:["assets/img/eylul1.jpg","assets/img/eylul2.jpg","assets/img/eylul3.jpg"]},
-    {name:"Ekim", photos:["assets/img/ekim1.jpg","assets/img/ekim2.jpg","assets/img/ekim3.jpg"]},
-    {name:"Kasım", photos:["assets/img/kasim1.jpg","assets/img/kasim2.jpg","assets/img/kasim3.jpg"]},
-    {name:"Aralık", photos:["assets/img/aralik1.jpg","assets/img/aralik2.jpg","assets/img/aralik3.jpg"]}
-  ];
+  // Ay isimleri ve fotoğraflar (buraya kendi resimlerinizi ekleyin)
+  const monthData = {
+    "Ocak": ["assets/img/ocak1.jpg", "assets/img/ocak2.jpg", "assets/img/ocak3.jpg"],
+    "Şubat": ["assets/img/subat1.jpg", "assets/img/subat2.jpg", "assets/img/subat3.jpg"],
+    "Mart": ["assets/img/mart1.jpg", "assets/img/mart2.jpg", "assets/img/mart3.jpg"],
+    "Nisan": ["assets/img/nisan1.jpg", "assets/img/nisan2.jpg", "assets/img/nisan3.jpg"],
+    "Mayıs": ["assets/img/mayis1.jpg", "assets/img/mayis2.jpg", "assets/img/mayis3.jpg"],
+    "Haziran": ["assets/img/haziran1.jpg", "assets/img/haziran2.jpg", "assets/img/haziran3.jpg"],
+    "Temmuz": ["assets/img/temmuz1.jpg", "assets/img/temmuz2.jpg", "assets/img/temmuz3.jpg"],
+    "Ağustos": ["assets/img/agustos1.jpg", "assets/img/agustos2.jpg", "assets/img/agustos3.jpg"],
+    "Eylül": ["assets/img/eylul1.jpg", "assets/img/eylul2.jpg", "assets/img/eylul3.jpg"],
+    "Ekim": ["assets/img/ekim1.jpg", "assets/img/ekim2.jpg", "assets/img/ekim3.jpg"],
+    "Kasım": ["assets/img/kasim1.jpg", "assets/img/kasim2.jpg", "assets/img/kasim3.jpg"],
+    "Aralık": ["assets/img/aralik1.jpg", "assets/img/aralik2.jpg", "assets/img/aralik3.jpg"],
+  };
 
   // Evleri oluştur
-  months.forEach((month, i) => {
+  const months = Object.keys(monthData);
+  months.forEach((month, idx) => {
     const house = document.createElement('div');
-    house.classList.add('house');
-    house.textContent = month.name;
-    house.dataset.index = i;
+    house.className = 'house';
+    house.textContent = month;
+    house.dataset.month = month;
     gameContainer.appendChild(house);
   });
 
-  // Player pozisyon ayar
-  function updatePlayerPosition() {
-    const house = gameContainer.children[posY * cols + posX];
-    const rect = house.getBoundingClientRect();
-    const containerRect = gameContainer.getBoundingClientRect();
-    player.style.top = (rect.top - containerRect.top + gameContainer.scrollTop + 5) + 'px';
-    player.style.left = (rect.left - containerRect.left + gameContainer.scrollLeft + 5) + 'px';
-  }
+  // Player başlangıç pozisyonu (0,0)
+  let posX = 0;
+  let posY = 0;
 
-  updatePlayerPosition();
+  const updatePlayerPos = () => {
+    const gap = 10; // CSS gap
+    const houseElem = document.querySelector('.house');
+    const houseWidth = houseElem.offsetWidth;
+    const houseHeight = houseElem.offsetHeight;
 
-  // Yön tuşlarıyla hareket
-  window.addEventListener('keydown', (e) => {
-    if(popup.classList.contains('hidden') === false) return; // popup açıksa engelle
+    player.style.left = (posX * (houseWidth + gap) + 10) + 'px'; // +10 padding
+    player.style.top = (posY * (houseHeight + gap) + 10) + 'px';
+  };
 
-    switch(e.key) {
+  updatePlayerPos();
+
+  // Klavye ile hareket
+  document.addEventListener('keydown', (e) => {
+    if (popup.style.display === 'block') return; // Popup açıkken hareket yok
+
+    switch (e.key) {
       case 'ArrowUp':
-        if(posY > 0) posY--;
+        if (posY > 0) posY--;
         break;
       case 'ArrowDown':
-        if(posY < rows - 1) posY++;
+        if (posY < rows -1) posY++;
         break;
       case 'ArrowLeft':
-        if(posX > 0) posX--;
+        if (posX > 0) posX--;
         break;
       case 'ArrowRight':
-        if(posX < cols - 1) posX++;
+        if (posX < cols -1) posX++;
         break;
       case ' ':
-        e.preventDefault();
-        // Popup aç
-        const currentHouse = months[posY * cols + posX];
-        popupTitle.textContent = currentHouse.name;
-        photoContainer.innerHTML = '';
-        currentHouse.photos.forEach(src => {
-          const img = document.createElement('img');
-          img.src = src;
-          photoContainer.appendChild(img);
-        });
-        popup.classList.remove('hidden');
+        // Boşluk tuşu ile popup aç
+        const currentMonth = months[posY * cols + posX];
+        if (currentMonth) {
+          openPopup(currentMonth);
+        }
         break;
+      default:
+        return;
     }
-    updatePlayerPosition();
+    updatePlayerPos();
+    e.preventDefault();
   });
 
-  // Popup kapatma
+  // Popup açma fonksiyonu
+  function openPopup(month) {
+    popupTitle.textContent = month + ' Ayı Fotoğrafları';
+    photoContainer.innerHTML = '';
+    monthData[month].forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      photoContainer.appendChild(img);
+    });
+    popup.style.display = 'block';
+  }
+
   closePopupBtn.addEventListener('click', () => {
-    popup.classList.add('hidden');
+    popup.style.display = 'none';
   });
-
-  // focus game container for key events
-  gameContainer.focus();
 }
