@@ -1,4 +1,5 @@
 /* Ortak stiller */
+
 body {
   margin: 0;
   background: #ffe5ec;
@@ -16,6 +17,7 @@ body {
 }
 
 /* Pasta ve mum */
+
 .cake {
   position: relative;
   display: inline-block;
@@ -129,8 +131,8 @@ body {
   height: 50px;
   background: url('assets/img/player.png') no-repeat center center / contain;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 10px;
+  left: 10px;
   transition: top 0.2s ease, left 0.2s ease;
   z-index: 10;
   pointer-events: none;
