@@ -1,41 +1,48 @@
-const candlesContainer = document.querySelector(".candles");
-
-// 4 mum oluştur
-for (let i = 0; i < 4; i++) {
-  const candle = document.createElement("div");
-  candle.classList.add("candle");
-
-  const flame = document.createElement("div");
-  flame.classList.add("flame");
-  candle.appendChild(flame);
-
-  candlesContainer.appendChild(candle);
-}
+const blowBtn = document.getElementById('blowBtn');
+const cakeScreen = document.getElementById('cakeScreen');
+const gameScreen = document.getElementById('gameScreen');
+const player = document.getElementById('player');
 
 function blowCandles() {
-  const candles = document.querySelectorAll(".candle");
+  const candles = document.querySelectorAll('.candle');
   candles.forEach(c => {
-    c.style.animation = "blowOut 1s forwards";
+    c.style.animation = 'blowOut 1s forwards';
   });
 
-  // Sayfa fade out
-  document.body.style.transition = "opacity 2s";
-  setTimeout(() => {
-    document.body.style.opacity = 0;
-  }, 1000);
+  cakeScreen.style.transition = 'opacity 2s';
+  cakeScreen.style.opacity = 0;
 
-  // 3 saniye sonra oyun sayfasına geç
   setTimeout(() => {
-    window.location.href = "game.html";
-  }, 3000);
+    cakeScreen.style.display = 'none';
+    gameScreen.style.display = 'grid';
+  }, 2000);
 }
 
-// Mum sönme animasyonu
-const style = document.createElement('style');
-style.innerHTML = `
-  @keyframes blowOut {
-    0% { opacity: 1; transform: scaleY(1); }
-    100% { opacity: 0; transform: scaleY(0.1); }
-  }
-`;
-document.head.appendChild(style);
+blowBtn.addEventListener('click', blowCandles);
+
+// Karakter hareketi
+
+const gridCols = 4;
+const gridRows = 3;
+const cellWidth = gameScreen.clientWidth / gridCols;
+const cellHeight = gameScreen.clientHeight / gridRows;
+let x = 0;
+let y = 0;
+
+function updatePlayerPosition() {
+  player.style.left = x * (cellWidth + 10) + 10 + 'px'; 
+  player.style.top = y * (cellHeight + 10) + 10 + 'px';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (gameScreen.style.display !== 'grid') return;
+
+  if (e.key === 'ArrowRight' && x < gridCols - 1) x++;
+  else if (e.key === 'ArrowLeft' && x > 0) x--;
+  else if (e.key === 'ArrowDown' && y < gridRows - 1) y++;
+  else if (e.key === 'ArrowUp' && y > 0) y--;
+
+  updatePlayerPosition();
+});
+
+updatePlayerPosition();
