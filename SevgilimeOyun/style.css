@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  background: #ffe5ec;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
+}
+
+.container {
+  padding: 30px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.cake {
+  position: relative;
+  display: inline-block;
+}
+
+.cake-img {
+  width: 300px;
+}
+
+.candles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  pointer-events: none;
+}
+
+.candle {
+  width: 5px;
+  height: 30px;
+  background: orange;
+  animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.blow-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background: #ff66a5;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.blow-btn:hover {
+  background: #e75480;
+}
